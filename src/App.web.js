@@ -1,19 +1,19 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, Text, Platform, View} from 'react-native';
-import {NativeRouter, Route, Link, Switch} from 'react-router-native';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import Movies from './Movies';
 import AddMovie from './addMovie';
-import {login} from './login';
+import Login, {Form, login} from './login';
 
 const isNative = Platform.OS !== 'web';
 
 const App = () => {
   return (
-    <NativeRouter>
+    <Router>
       <View style={styles.container}>
         <Switch>
-          <Route path="/" exact component={Movies} />
           <Route path="/addMovie" exact component={AddMovie} />
           <View style={styles.button}>
             <Link to={`/addMovie`} style={{textDecoration: 'none'}}>
@@ -22,6 +22,8 @@ const App = () => {
           </View>
         </Switch>
         <Switch>
+          <Route path="/" exact component={Login} />
+          <Route path="/movies" exact component={Movies} />
           <Route
             path="/movies/:title/:date/:summary"
             exact
@@ -29,7 +31,7 @@ const App = () => {
           />
         </Switch>
       </View>
-    </NativeRouter>
+    </Router>
   );
 };
 
@@ -37,6 +39,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#282c34',
+    overflow: 'scroll,',
     justifyContent: 'space-evenly',
   },
   button: {

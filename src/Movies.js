@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
+//import {Link} from 'react-router-native';
 import {useSelector} from 'react-redux';
 import {setMovies} from './actions/movieActions';
 import {
@@ -17,9 +18,35 @@ import axios from 'axios';
 
 const isNative = Platform.OS !== 'web';
 
+const addedMovie = () => {
+  let title = localStorage.getItem('Title');
+  let date = localStorage.getItem('Date');
+  let summary = localStorage.getItem('Summary');
+  console.log(title);
+  console.log(date);
+  return (
+    <View style={styles.box}>
+      <Image style={styles.image} />
+      <Text style={styles.letters}>{title}</Text>
+
+      <View style={styles.button}>
+        <Link
+          to={`/movies/${title}/${date}/${summary}`}
+          style={{textDecoration: 'none'}}>
+          <Text style={styles.block}> Details</Text>
+        </Link>
+      </View>
+    </View>
+  );
+};
+
 const Movies = () => {
   const movies = useSelector(state => state.allMovies.movies);
   const dispatch = useDispatch();
+
+  /*this.state = {
+    title: title,
+  };*/
 
   //const [items, setItems] = useState([]);
   const fetchMovies = async () => {
@@ -42,6 +69,7 @@ const Movies = () => {
   return (
     <ScrollView>
       <View style={styles.container}>
+        {addedMovie()}
         {movies.map(movies => (
           <View style={styles.box}>
             <Image style={styles.image} source={{uri: movies.multimedia.src}} />
