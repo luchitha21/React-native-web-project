@@ -5,31 +5,35 @@ import MovieDetails from './MovieDetails';
 import Movies from './Movies';
 import AddMovie from './addMovie';
 import {login} from './login';
+import store from './store';
+import {Provider} from 'react-redux';
 
 const isNative = Platform.OS !== 'web';
 
 const App = () => {
   return (
-    <NativeRouter>
-      <View style={styles.container}>
-        <Switch>
-          <Route path="/" exact component={Movies} />
-          <Route path="/addMovie" exact component={AddMovie} />
-          <View style={styles.button}>
-            <Link to={`/addMovie`} style={{textDecoration: 'none'}}>
-              <Text style={styles.block}> Add Movie</Text>
-            </Link>
-          </View>
-        </Switch>
-        <Switch>
-          <Route
-            path="/movies/:title/:date/:summary"
-            exact
-            component={MovieDetails}
-          />
-        </Switch>
-      </View>
-    </NativeRouter>
+    <Provider store={store}>
+      <NativeRouter>
+        <View style={styles.container}>
+          <Switch>
+            <Route path="/" exact component={Movies} />
+            <Route path="/addMovie" exact component={AddMovie} />
+            <View style={styles.button}>
+              <Link to={`/addMovie`} style={{textDecoration: 'none'}}>
+                <Text style={styles.block}> Add Movie</Text>
+              </Link>
+            </View>
+          </Switch>
+          <Switch>
+            <Route
+              path="/movies/:title/:date/:summary"
+              exact
+              component={MovieDetails}
+            />
+          </Switch>
+        </View>
+      </NativeRouter>
+    </Provider>
   );
 };
 

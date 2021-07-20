@@ -68,6 +68,11 @@ const Movies = () => {
 
   return (
     <ScrollView>
+      <View style={styles.btn}>
+        <Link to={`/addMovie`} style={{textDecoration: 'none'}}>
+          <Text style={styles.block}> Add Movie</Text>
+        </Link>
+      </View>
       <View style={styles.container}>
         {addedMovie()}
         {movies.map(movies => (
@@ -123,6 +128,15 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#3da8ff',
     textAlign: 'center',
+    borderRadius: 5,
+    position: 'relative',
+    margin: 5,
+  },
+  btn: {
+    backgroundColor: '#3da8ff',
+    textAlign: 'center',
+    width: 200,
+    height: 20,
     borderRadius: 5,
     position: 'relative',
     margin: 5,

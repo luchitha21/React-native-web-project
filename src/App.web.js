@@ -14,14 +14,6 @@ const App = () => {
     <Router>
       <View style={styles.container}>
         <Switch>
-          <Route path="/addMovie" exact component={AddMovie} />
-          <View style={styles.button}>
-            <Link to={`/addMovie`} style={{textDecoration: 'none'}}>
-              <Text style={styles.block}> Add Movie</Text>
-            </Link>
-          </View>
-        </Switch>
-        <Switch>
           <Route path="/" exact component={Login} />
           <Route path="/movies" exact component={Movies} />
           <Route
@@ -29,6 +21,7 @@ const App = () => {
             exact
             component={MovieDetails}
           />
+          <Route path="/addMovie" exact component={AddMovie} />
         </Switch>
       </View>
     </Router>
@@ -42,15 +35,7 @@ const styles = StyleSheet.create({
     overflow: 'scroll,',
     justifyContent: 'space-evenly',
   },
-  button: {
-    backgroundColor: '#3da8ff',
-    textAlign: 'center',
-    width: 200,
-    height: 20,
-    borderRadius: 5,
-    position: 'relative',
-    margin: 5,
-  },
+
   block: {
     fontWeight: 'bold',
   },

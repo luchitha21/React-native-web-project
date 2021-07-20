@@ -31,7 +31,7 @@ const Login = () => {
       .then(
         response => {
           console.log(response);
-          alert('Token', response.data.token);
+          alert(response.data.token);
           history.push('/movies');
         },
         error => {
@@ -44,6 +44,7 @@ const Login = () => {
   return (
     <View style={styles.container}>
       <View style={styles.body}>
+        <h3>Login</h3>
         <h3>Enter the Email:</h3>
         <input
           placeholder="Email"
