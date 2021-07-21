@@ -1,15 +1,13 @@
 import React from 'react';
 import {useState} from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   Text,
   Platform,
   View,
-  Image,
   Button,
+  TextInput,
 } from 'react-native';
-import Movies from './Movies';
 
 const isNative = Platform.OS !== 'web';
 
@@ -26,20 +24,23 @@ const AddMovie = () => {
   return (
     <View style={styles.container}>
       <View style={styles.body}>
-        <h3>Title Of The Movie:</h3>
-        <input
+        <Text style={styles.letters}>Title Of The Movie:</Text>
+        <TextInput
+          style={styles.input}
           placeholder="Title"
           value={title}
           onChange={e => setTitle(e.target.value)}
         />
-        <h3>Opening Date:</h3>
-        <input
-          type="Date"
+        <Text style={styles.letters}>Opening Date:</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Date"
           value={date}
           onChange={e => setDate(e.target.value)}
         />
-        <h3>Summary:</h3>
-        <input
+        <Text style={styles.letters}>Summary:</Text>
+        <TextInput
+          style={styles.input}
           placeholder="Summary"
           value={summary}
           onChange={e => setSummary(e.target.value)}
@@ -69,6 +70,17 @@ const styles = StyleSheet.create({
     margin: 5,
     padding: 4,
     justifyContent: 'space-evenly',
+  },
+  letters: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    textShadowColor: 'blue',
+    textAlign: 'center',
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
   },
 });
 

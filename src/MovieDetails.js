@@ -1,31 +1,22 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  Platform,
-  View,
-  Image,
-} from 'react-native';
-import Movies from './Movies';
+import {StyleSheet, Text, Platform, View, Image} from 'react-native';
 
 const isNative = Platform.OS !== 'web';
 
 const MovieDetails = ({match}) => {
   const movies = useSelector(state => state.allMovies.movies);
-  var obj = movies[0];
-  console.log(match);
+  var obj = movies[match.params.id];
+
   return (
     <View style={styles.container}>
       <View style={styles.box}>
-        <Text style={styles.letters}>
-          {match.params.title}
-          {'\n'}
-          Opening Date : {match.params.date}
-          {'\n'}
-          {match.params.summary}
-        </Text>
+        <Image style={styles.image} source={{uri: obj.multimedia.src}} />
+        <Text style={styles.letters}>{obj.display_title}</Text>
+
+        <Text style={styles.letters}>Opening Date : {obj.opening_date}</Text>
+
+        <Text style={styles.letters}>{obj.summary_short}</Text>
       </View>
     </View>
   );
@@ -51,7 +42,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   image: {
-    height: 150,
+    height: 250,
     borderRadius: 10,
     margin: 5,
     position: 'relative',

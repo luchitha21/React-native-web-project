@@ -1,25 +1,22 @@
 import React from 'react';
 import {useState} from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   Text,
   Platform,
   View,
-  Image,
   Button,
+  TextInput,
 } from 'react-native';
-import Movies from './Movies';
+
 import axios from 'axios';
-import {Redirect, Route} from 'react-router';
+
 import {useHistory} from 'react-router-dom';
 const isNative = Platform.OS !== 'web';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
   const history = useHistory();
 
   const sucess = () => {
@@ -44,16 +41,19 @@ const Login = () => {
   return (
     <View style={styles.container}>
       <View style={styles.body}>
-        <h3>Login</h3>
-        <h3>Enter the Email:</h3>
-        <input
+        <Text style={styles.letters}>Login</Text>
+        <Text style={styles.letters}>Enter the Email:</Text>
+        <TextInput
+          style={styles.input}
           placeholder="Email"
           value={email}
           onChange={e => setEmail(e.target.value)}
         />
-        <h3>Password:</h3>
-        <input
-          type="Password"
+        <Text style={styles.letters}>Password:</Text>
+        <TextInput
+          placeholder="Password"
+          style={styles.input}
+          secureTextEntry={true}
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
@@ -81,6 +81,17 @@ const styles = StyleSheet.create({
     margin: 5,
     padding: 4,
     justifyContent: 'space-evenly',
+  },
+  letters: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    textShadowColor: 'blue',
+    textAlign: 'center',
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
   },
 });
 

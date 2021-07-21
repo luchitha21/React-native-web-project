@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-native';
 import {useSelector} from 'react-redux';
 import {setMovies} from './actions/movieActions';
 import {

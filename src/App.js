@@ -1,13 +1,12 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text, Platform, View} from 'react-native';
+import {StyleSheet, Text, Platform, View} from 'react-native';
 import {NativeRouter, Route, Link, Switch} from 'react-router-native';
-import MovieDetails from './MovieDetails';
-import Movies from './Movies';
+import Movies from './movies.android';
 import AddMovie from './addMovie';
-import {login} from './login';
+import Login from './login';
 import store from './store';
 import {Provider} from 'react-redux';
-
+import MovieDetails from './MovieDetails';
 const isNative = Platform.OS !== 'web';
 
 const App = () => {
@@ -16,6 +15,7 @@ const App = () => {
       <NativeRouter>
         <View style={styles.container}>
           <Switch>
+            <Route path="/login" exact component={Login} />
             <Route path="/" exact component={Movies} />
             <Route path="/addMovie" exact component={AddMovie} />
             <View style={styles.button}>
@@ -25,11 +25,7 @@ const App = () => {
             </View>
           </Switch>
           <Switch>
-            <Route
-              path="/movies/:title/:date/:summary"
-              exact
-              component={MovieDetails}
-            />
+            <Route path="/movies/:id" exact component={MovieDetails} />
           </Switch>
         </View>
       </NativeRouter>
