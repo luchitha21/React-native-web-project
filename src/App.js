@@ -1,13 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, Platform, View} from 'react-native';
 import {NativeRouter, Route, Link, Switch} from 'react-router-native';
-import Movies from './movies.android';
-import AddMovie from './addMovie';
-import Login from './login';
+import Movies from './components/movie/movies.android';
+import AddMovie from './components/movie/addmovie.android';
+import Login from './components/login/login.android';
 import store from './store';
 import {Provider} from 'react-redux';
-import MovieDetails from './MovieDetails';
-const isNative = Platform.OS !== 'web';
+import MovieDetails from './components/movie/MovieDetails';
+import AddedMovie from './components/movie/addedmovie.android';
 
 const App = () => {
   return (
@@ -15,17 +15,11 @@ const App = () => {
       <NativeRouter>
         <View style={styles.container}>
           <Switch>
-            <Route path="/login" exact component={Login} />
-            <Route path="/" exact component={Movies} />
-            <Route path="/addMovie" exact component={AddMovie} />
-            <View style={styles.button}>
-              <Link to={`/addMovie`} style={{textDecoration: 'none'}}>
-                <Text style={styles.block}> Add Movie</Text>
-              </Link>
-            </View>
-          </Switch>
-          <Switch>
+            <Route path="/" exact component={Login} />
+            <Route path="/movies" exact component={Movies} />
             <Route path="/movies/:id" exact component={MovieDetails} />
+            <Route path="/addMovie" exact component={AddMovie} />
+            <Route path="/addedMovie" exact component={AddedMovie} />
           </Switch>
         </View>
       </NativeRouter>

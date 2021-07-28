@@ -1,10 +1,10 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import MovieDetails from './MovieDetails';
-import Movies from './Movies';
-import AddMovie from './addMovie';
-import Login from './login';
-import AddedMovie from './addedMovie';
+import MovieDetails from './components/movie/MovieDetails';
+import Movies from './components/movie/Movies';
+import AddMovie from './components/movie/addMovie';
+import Login from './components/login/login';
+import AddedMovie from './components/movie/addedMovie';
 
 const Routes = () => {
   return (

@@ -2,8 +2,6 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {StyleSheet, Text, Platform, View, Image} from 'react-native';
 
-const isNative = Platform.OS !== 'web';
-
 const MovieDetails = ({match}) => {
   const movies = useSelector(state => state.allMovies.movies);
   var obj = movies[match.params.id];

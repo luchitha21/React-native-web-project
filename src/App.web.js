@@ -1,8 +1,7 @@
 import React from 'react';
-import {StyleSheet, Platform, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import Actions from './actions/actions';
 import Routes from './routes';
-
-const isNative = Platform.OS !== 'web';
 
 const App = () => {
   return (
